@@ -1,0 +1,955 @@
+/* Studio chrome. Loaded after the viewer's styles: a narrower panel with smaller,
+   calmer type, so the table keeps the room. Sizes are display-only; no ids change. */
+#controls {
+  top: 10px;
+  left: 10px;
+  width: min(248px, calc(100vw - 22px));
+  font-size: 12px;
+}
+#controls .title-row h1 {
+  font-size: 14.5px;
+  line-height: 1.25;
+}
+#controls .subtle,
+#controls .hint-line {
+  font-size: 11px;
+  line-height: 1.3;
+}
+#controls .hint-line {
+  margin: 8px 0 0;
+}
+#controls .button-row {
+  gap: 6px;
+  margin-bottom: 8px;
+}
+#controls .button-row button,
+#controls .icon-button,
+#controls .tool-grid button {
+  min-height: 26px;
+  padding: 3px 7px;
+  font-size: 11.5px;
+  border-radius: 7px;
+}
+#controls .tool-grid {
+  gap: 6px;
+  margin-bottom: 8px;
+}
+#controls textarea,
+#controls input,
+#controls select {
+  font-size: 12px;
+  padding: 6px 8px;
+}
+#controls .field,
+#controls .stats-section {
+  margin-bottom: 9px;
+}
+#controls .stats-section > h2,
+#controls .stats-section > h3,
+#controls .panel-view > h2 {
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+}
+#controls .status {
+  padding: 7px 9px;
+  font-size: 11.5px;
+}
+#deck-title-banner {
+  font-size: 13px;
+  padding: 6px 9px;
+}
+#deck-title-display {
+  margin-top: 6px;
+  padding: 5px 9px;
+  font-size: 12.5px;
+}
+
+/* The deck name already heads the stats and role boards; the floating chip only
+   overlaps them. */
+body[data-view="stats"] #deck-title-banner,
+body[data-view="buckets"] #deck-title-banner {
+  display: none;
+}
+
+/* The view tabs live along the bottom edge in every pane width: the table keeps the
+   full height above them and the row reads as one control strip. */
+#global-view-tabs {
+  position: fixed;
+  top: auto;
+  bottom: 10px;
+  left: 268px;
+  right: 10px;
+  width: auto;
+  transform: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+}
+body.panel-collapsed #global-view-tabs {
+  left: 74px;
+}
+body.strategy-mode #global-view-tabs,
+body.strategy-mode.panel-collapsed #global-view-tabs {
+  left: 10px;
+  right: 10px;
+  width: auto;
+  transform: none;
+}
+
+/* Cards never slide under the menu: the table is clipped at the panel's right edge.
+   --wb-left-inset is published by framing.js and follows the panel. */
+#viewport {
+  clip-path: inset(0 0 0 var(--wb-left-inset, 0px));
+}
+body.strategy-mode #viewport {
+  clip-path: none;
+}
+
+/* Strategy keeps the panel rail: the notes start at the top of the pane and fill it,
+   instead of floating in the middle of the room. */
+body.strategy-mode #controls {
+  display: block;
+}
+body.strategy-mode #strategy-workspace {
+  display: block;
+  place-items: initial;
+  padding: 12px 12px 54px calc(var(--wb-left-inset, 0px) + 10px);
+}
+body.strategy-mode .strategy-notes-shell {
+  width: 100%;
+  max-width: 1120px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* The sideboard tab sits left of the four views: same height and padding, quieter. */
+.wb-sideboard-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--ui-text-quaternary, #7b8397);
+  border-style: dashed;
+  background: transparent;
+}
+.wb-sideboard-tab:hover {
+  color: var(--ui-text-secondary, #c3cad8);
+}
+.wb-sideboard-tab.is-active {
+  color: var(--ui-text-secondary, #c3cad8);
+  border-style: solid;
+  background: rgba(255, 255, 255, 0.04);
+}
+.wb-sideboard-count {
+  padding: 0 5px;
+  border-radius: 8px;
+  font-size: 10.5px;
+  background: rgba(143, 182, 255, 0.18);
+  color: var(--ui-text-secondary, #c3cad8);
+}
+
+/* Candidates found for the deck, shown over the table between the panel and the tabs. */
+.wb-sideboard {
+  position: fixed;
+  top: 8px;
+  left: calc(var(--wb-left-inset, 0px) + 10px);
+  right: 10px;
+  bottom: 60px;
+  z-index: 9000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* The pane's controls float at the top-right; keep the first row clear of them. */
+  padding: 40px 14px 16px;
+  border: 1px solid rgba(143, 182, 255, 0.28);
+  border-radius: 10px;
+  background: #0b1018;
+  color: #e8f1ff;
+  font-size: 12.5px;
+}
+.wb-sideboard[hidden] { display: none; }
+.wb-sideboard-add {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.wb-sideboard-add input {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  padding: 0 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(143, 182, 255, 0.28);
+  background: rgba(9, 13, 20, 0.85);
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+}
+.wb-sideboard-add input::placeholder { color: rgba(195, 202, 216, 0.5); }
+.wb-sideboard-add button,
+.wb-scan-card {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(143, 182, 255, 0.32);
+  background: rgba(143, 182, 255, 0.12);
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.wb-sideboard-add button:disabled { opacity: 0.5; cursor: default; }
+.wb-scan-card { border-color: rgba(159, 232, 216, 0.4); background: rgba(159, 232, 216, 0.12); }
+
+.wb-sideboard-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.wb-sideboard-head span { opacity: 0.62; font-size: 11.5px; }
+.wb-sideboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 12px;
+}
+.wb-sideboard-card {
+  min-width: 0;
+  max-width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(143, 182, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(16, 23, 34, 0.9);
+}
+.wb-sideboard-card img { width: 100%; border-radius: 6px; display: block; }
+.wb-sideboard-noimg { height: 120px; border-radius: 6px; background: rgba(255, 255, 255, 0.05); }
+.wb-sideboard-body { display: grid; gap: 4px; min-width: 0; }
+.wb-sideboard-name { font-weight: 600; }
+.wb-sideboard-meta, .wb-sideboard-type { opacity: 0.72; font-size: 11px; }
+.wb-sideboard-reason { margin: 2px 0 0; font-size: 11.5px; color: #9fe8d8; }
+.wb-sideboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.wb-sideboard-actions button {
+  flex: 1 1 auto;
+  min-height: 26px;
+  padding: 0 8px;
+  border: 1px solid rgba(143, 182, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(143, 182, 255, 0.1);
+  color: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+/* Chooser for "Swap in": type to search the deck, or use the table selection. */
+.wb-swap-panel {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid rgba(143, 182, 255, 0.34);
+  border-radius: 8px;
+  background: #0d1420;
+}
+.wb-swap-panel[hidden] { display: none; }
+.wb-swap-search {
+  width: 100%;
+  min-height: 26px;
+  padding: 0 8px;
+  border: 1px solid rgba(143, 182, 255, 0.4);
+  border-radius: 6px;
+  background: #121a26;
+  color: #e8f1ff;
+  font-size: 12px;
+}
+.wb-swap-search:focus { outline: none; border-color: rgba(143, 182, 255, 0.75); }
+.wb-swap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 168px;
+  overflow-y: auto;
+  display: grid;
+  gap: 2px;
+}
+.wb-swap-option {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 3px 6px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #dbe6f7;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.wb-swap-option:hover,
+.wb-swap-option:focus-visible {
+  background: rgba(143, 182, 255, 0.18);
+  outline: none;
+}
+.wb-swap-option span { opacity: 0.55; font-size: 11px; }
+.wb-swap-none { padding: 3px 6px; font-size: 11.5px; opacity: 0.6; }
+.wb-swap-footer { display: flex; gap: 6px; }
+.wb-swap-footer button {
+  flex: 1;
+  min-height: 24px;
+  padding: 0 6px;
+  border: 1px solid rgba(143, 182, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(143, 182, 255, 0.08);
+  color: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.wb-swap-footer button:disabled { opacity: 0.45; cursor: default; }
+.wb-sideboard-empty { padding: 14px 8px; color: var(--ui-text-secondary, #c3cad8); }
+.wb-sideboard-empty p { margin: 0 0 6px; opacity: 0.72; font-size: 12px; }
+.wb-sideboard-empty ul { margin: 0 0 10px; padding-left: 18px; display: grid; gap: 4px; }
+.wb-sideboard-empty li { font-size: 12.5px; opacity: 0.92; }
+
+/* Colour rows: the counts sit at the end of each bar, readable without hovering. */
+.color-stat .color-track {
+  position: relative;
+}
+.color-stat .color-value {
+  position: absolute;
+  right: 6px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text-secondary, #c3cad8);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+.color-stat .color-value.is-short {
+  color: #ffd9a0;
+}
+
+/* Click a sideboard thumbnail for a full-size card. */
+.wb-sideboard-card img { cursor: zoom-in; }
+.wb-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(5, 8, 13, 0.9);
+  cursor: zoom-out;
+}
+.wb-zoom[hidden] { display: none; }
+.wb-zoom-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: min(760px, 100%);
+  max-height: 100%;
+}
+.wb-zoom img {
+  max-height: calc(100vh - 120px);
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+}
+.wb-zoom-caption {
+  font-size: 13px;
+  color: #e8f1ff;
+  text-align: center;
+}
+.wb-zoom-hint {
+  font-size: 11px;
+  color: var(--ui-text-tertiary, #8b93a7);
+}
+body.wb-zooming #viewport { overflow: hidden; }
+
+/* Card search: magnifier over the table and Effects views. */
+#wb-search {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font: inherit;
+}
+
+#wb-search[hidden] { display: none; }
+
+#wb-search-toggle {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #101722;
+  color: #cfe0f5;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+#wb-search-toggle:hover { background: #17202d; color: #eaf3ff; }
+/* The link view's own button, sitting just left of the search magnifier. */
+#wb-links-toggle {
+  position: fixed;
+  top: 10px;
+  right: 46px;
+  z-index: 9100;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #101722;
+  color: #cfe0f5;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+#wb-links-toggle:hover { background: #17202d; color: #eaf3ff; }
+#wb-links-toggle svg { width: 16px; height: 16px; }
+#wb-links-toggle.is-on { border-color: #4fd1c5; color: #8ff0e2; background: #10231f; }
+/* The panel has its own close button; leaving the trigger on top of its controls reads as clutter. */
+#wb-links-toggle.is-hidden { display: none; }
+
+
+#wb-search-toggle svg { width: 16px; height: 16px; }
+
+#wb-search-panel {
+  width: 264px;
+  box-sizing: border-box;
+  padding: 6px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #0e131b;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+#wb-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #131b26;
+  color: #e8f1ff;
+  font-size: 12.5px;
+}
+
+#wb-search-input::placeholder { color: #7f8b9d; }
+#wb-search-input:focus { outline: none; border-color: rgba(110, 200, 255, 0.55); }
+
+#wb-search-results {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  max-height: 264px;
+  overflow: auto;
+}
+
+#wb-search-results[hidden] { display: none; }
+#wb-search-results li { margin: 0; }
+
+#wb-search-results button {
+  display: block;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #dbe7f6;
+  text-align: left;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+#wb-search-results button span {
+  display: block;
+  margin-top: 2px;
+  color: #8b97a8;
+  font-size: 10.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#wb-search-results button:hover,
+#wb-search-results button.is-active {
+  background: #1b2532;
+  color: #ffffff;
+}
+
+#wb-search-results .wb-search-empty {
+  padding: 6px 8px;
+  color: #8b97a8;
+  font-size: 12px;
+}
+
+/* Where the picked card can be found, and which of those places is showing. */
+#wb-search-hits {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: #131b26;
+  color: #9fb0c6;
+  font-size: 11.5px;
+}
+
+#wb-search-hits[hidden] { display: none; }
+
+#wb-search-hits .wb-search-hits-actions { display: flex; gap: 4px; }
+
+#wb-search-hits button {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #1b2532;
+  color: #dbe7f6;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#wb-search-hits button:hover { background: #24313f; color: #ffffff; }
+#wb-search-hits button[hidden] { display: none; }
+
+/* The occurrence the search is pointing at. */
+.bucket-card.is-search-hit {
+  outline: 2px solid #6ec8ff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(110, 200, 255, 0.18);
+}
+
+/* The card the search is pointing at, in the table view. */
+.card.is-search-hit {
+  outline: 2px solid #6ec8ff;
+  outline-offset: 2px;
+}
+
+/* Ring around the card the search points at, drawn in screen space. */
+#wb-spot {
+  position: fixed;
+  z-index: 8990;
+  border: 2px solid #6ec8ff;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px rgba(110, 200, 255, 0.2), 0 0 26px rgba(110, 200, 255, 0.45);
+  pointer-events: none;
+  transition: left 0.12s ease, top 0.12s ease, width 0.12s ease, height 0.12s ease;
+}
+
+#wb-spot[hidden] { display: none; }
+
+/* Search overlay: which effect is showing, with the arrows to walk them. */
+#wb-peek .wb-zoom-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#wb-peek .wb-peek-place { color: #cfe0f5; }
+
+#wb-peek .wb-peek-nav { display: inline-flex; gap: 4px; }
+
+#wb-peek .wb-peek-nav button {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: #1b2532;
+  color: #e8f1ff;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#wb-peek .wb-peek-nav button:hover { background: #26333f; }
+
+
+
+
+/* Card links: a view of its own, opened by the chain button beside the search. */
+.wb-edit-links-row { margin: 8px 0 14px; display: grid; gap: 8px; }
+
+#wb-move-sideboard {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(143, 182, 255, 0.42);
+  background: rgba(143, 182, 255, 0.12);
+  color: #cfe0ff;
+  font-weight: 600;
+  cursor: pointer;
+}
+#wb-move-sideboard:hover { background: rgba(143, 182, 255, 0.2); color: #eaf2ff; }
+#wb-move-sideboard svg { width: 15px; height: 15px; }
+
+#wb-edit-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(79, 209, 197, 0.45);
+  background: rgba(79, 209, 197, 0.12);
+  color: #9df3e7;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#wb-edit-links:hover { background: rgba(79, 209, 197, 0.2); color: #d6fdf6; }
+#wb-edit-links svg { width: 15px; height: 15px; }
+
+#wb-links-panel {
+  position: fixed;
+  top: 8px;
+  left: calc(var(--wb-left-inset, 0px) + 10px);
+  right: 10px;
+  bottom: 60px;
+  z-index: 9000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 14px 18px;
+  border: 1px solid rgba(143, 182, 255, 0.28);
+  border-radius: 10px;
+  background: #0b1018;
+  color: #e8f1ff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+#wb-links-panel[hidden] { display: none; }
+
+.wb-links-shell { display: flex; flex-direction: column; gap: 10px; }
+
+.wb-links-head { display: flex; align-items: flex-start; gap: 10px; }
+
+.wb-links-title { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.wb-links-title strong { font-size: 15px; line-height: 1.2; }
+.wb-links-meta { color: #9fb0c6; font-size: 11.5px; }
+
+.wb-links-back,
+.wb-links-close,
+.wb-links-zoom button {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #131b26;
+  color: #dbe7f6;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wb-links-back:hover,
+.wb-links-close:hover,
+.wb-links-zoom button:hover { background: #1b2532; color: #fff; }
+
+.wb-links-zoom { display: flex; align-items: center; gap: 4px; color: #8fa1b8; font-size: 11px; }
+
+.wb-links-tools { display: flex; align-items: center; gap: 12px; }
+.wb-links-tools .wb-links-filter { margin-left: auto; flex: 0 1 220px; }
+.wb-links-note { margin-left: auto; color: #6f7d90; font-size: 11px; }
+
+.wb-links-body { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+
+/* Two directions, two panels: the player must tell "feeds" from "fed by" without reading. */
+.wb-links-column {
+  min-width: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0b1017;
+  padding: 0 10px 10px;
+}
+.wb-links-column.is-in { border-color: rgba(79, 209, 197, 0.38); }
+/* Static boosts: no trigger fires, so these sit outside the two event columns. */
+.wb-links-column.is-static.is-up { border-color: rgba(129, 176, 255, 0.34); }
+.wb-links-column.is-static.is-down { border-color: rgba(129, 176, 255, 0.22); }
+
+.wb-links-column.is-out { border-color: rgba(246, 173, 85, 0.38); }
+
+.wb-links-side {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 -10px 10px;
+  padding: 9px 12px;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.wb-links-column.is-in .wb-links-side { background: linear-gradient(180deg, rgba(79, 209, 197, 0.17), rgba(79, 209, 197, 0.04)); }
+.wb-links-column.is-out .wb-links-side { background: linear-gradient(180deg, rgba(246, 173, 85, 0.17), rgba(246, 173, 85, 0.04)); }
+
+.wb-links-side-icon { width: 17px; height: 17px; flex: 0 0 auto; }
+.wb-links-column.is-in .wb-links-side-icon { color: #6fe3d6; }
+.wb-links-column.is-out .wb-links-side-icon { color: #f7c07a; }
+
+.wb-links-side-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.wb-links-side-text strong { font-size: 13px; font-weight: 650; color: #edf4ff; letter-spacing: 0; }
+.wb-links-side-text em { font-style: normal; font-size: 11px; color: #93a5bb; }
+
+.wb-links-side-hint {
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px dashed rgba(246, 173, 85, 0.6);
+  font-size: 10.5px;
+  color: #f0c48c;
+}
+
+.wb-links-side-count {
+  margin-left: auto;
+  min-width: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+.wb-links-column.is-in .wb-links-side-hint {
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px dashed rgba(246, 173, 85, 0.6);
+  font-size: 10.5px;
+  color: #f0c48c;
+}
+
+.wb-links-side-count { background: rgba(79, 209, 197, 0.2); color: #9df3e7; }
+.wb-links-column.is-out .wb-links-side-hint {
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px dashed rgba(246, 173, 85, 0.6);
+  font-size: 10.5px;
+  color: #f0c48c;
+}
+
+.wb-links-side-count { background: rgba(246, 173, 85, 0.2); color: #ffd6a3; }
+
+.wb-link-group { margin-bottom: 10px; }
+.wb-link-group h4 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cfe0f5;
+}
+.wb-link-group h4 span { color: #6f7d90; font-weight: 400; font-size: 11px; }
+
+/* One disclosure row per kind of link: the count stays on the row while the cards fold away, so a
+   card with six kinds of link reads as six numbered lines instead of a wall of tiles. */
+.wb-link-group-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.wb-link-group-head:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); }
+.wb-link-group-head:focus-visible { outline: 1px solid #4fd1c5; outline-offset: 1px; }
+.wb-link-group-arrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  color: #7f92aa;
+  transition: transform 0.12s ease;
+}
+.wb-link-group-arrow svg { display: block; width: 12px; height: 12px; }
+.wb-link-group-head[aria-expanded="true"] .wb-link-group-arrow { transform: rotate(90deg); color: #6fe3d6; }
+.wb-link-group h4 .wb-link-group-label { color: #cfe0f5; font-weight: 600; }
+.wb-link-group h4 .wb-link-group-count {
+  margin-left: auto;
+  padding: 0 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: #93a5bb;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.wb-link-group.is-collapsed h4 { margin-bottom: 4px; }
+.wb-link-group-body { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; flex: 1 0 100%; }
+
+.wb-link-tile {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px 10px 0;
+  max-width: 100%;
+}
+
+.wb-link-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111a25;
+  cursor: zoom-in;
+}
+
+.wb-link-open img { display: block; width: 100%; height: auto; }
+.wb-link-noimg { padding: 24px 6px; text-align: center; color: #6f7d90; font-size: 11px; }
+
+.wb-link-name { margin-top: 4px; font-size: 11.5px; color: #dbe7f6; line-height: 1.25; }
+.wb-link-meta { font-size: 10.5px; color: #8fa1b8; }
+
+.wb-link-reason {
+  margin: 4px 0 0;
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: #8b97a8;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wb-link-effects { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+.wb-link-effect { padding: 1px 5px; border-radius: 8px; background: rgba(143, 182, 255, 0.16); color: #c3cad8; font-size: 9.5px; }
+
+.wb-link-empty { color: #6f7d90; font-size: 12px; }
+.wb-links-hint { color: #6f7d90; font-size: 11.5px; }
+
+body.wb-links-open #table { pointer-events: none; }
+
+.wb-links-hero {
+  flex: none;
+  width: 62px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #111a25;
+  cursor: zoom-in;
+}
+
+.wb-links-hero img { display: block; width: 100%; height: auto; }
+.wb-links-trail { color: #6f7d90; font-size: 10.5px; }
+.wb-link-group { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; }
+.wb-link-group h4 { flex: 1 0 100%; }
+.wb-link-tile.is-candidate {
+  border-color: rgba(246, 173, 85, 0.55);
+  border-style: dashed;
+  background: #14100a;
+}
+
+.wb-link-badge {
+  display: inline-block;
+  margin: 4px 0 0;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(246, 173, 85, 0.2);
+  color: #ffd6a3;
+}
+
+.wb-link-tag {
+  margin-top: 2px;
+  font-size: 10px;
+  color: #8d7a5e;
+}
+
+/* Candidates live below the deck cards, never among them. */
+.wb-link-candidates {
+  margin-top: 12px;
+  padding: 8px 8px 10px;
+  border: 1px dashed rgba(246, 173, 85, 0.45);
+  border-radius: 10px;
+  background: rgba(246, 173, 85, 0.05);
+}
+
+.wb-link-candidates h5 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #f0c48c;
+}
+
+.wb-link-candidates h5 span {
+  margin-left: auto;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(246, 173, 85, 0.22);
+  color: #ffd6a3;
+}
+
+.wb-link-candidate-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.wb-link-tile { margin: 0; }
+
+.wb-links-filter {
+  flex: 1 1 160px;
+  min-width: 120px;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #131b26;
+  color: #e8f1ff;
+  font-size: 11.5px;
+}
+
+.wb-links-filter::placeholder { color: #6f7d90; }
+.wb-links-filter:focus { outline: none; border-color: rgba(110, 200, 255, 0.55); }
+
+

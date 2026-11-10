@@ -1,0 +1,881 @@
+{
+ "deckTitle": "Links fixture",
+ "cards": [
+  {
+   "id": "lnk-01",
+   "name": "Swamp",
+   "typeLine": "Basic Land — Swamp",
+   "autoBucketFacts": []
+  },
+  {
+   "id": "lnk-02",
+   "name": "Forest",
+   "typeLine": "Basic Land — Forest",
+   "autoBucketFacts": []
+  },
+  {
+   "id": "lnk-03",
+   "name": "Phylath, World Sculptor",
+   "typeLine": "Legendary Creature — Elemental",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-trigger-named-permanent-enters",
+     "abilityId": "face-0/ability-0",
+     "role": "trigger",
+     "action": "react-to-enter",
+     "actor": "you",
+     "object": {
+      "kind": "permanent",
+      "name": "This permanent",
+      "types": [
+       "permanent",
+       "this-permanent"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "permanents/react-to/enter-self",
+      "label": "React to this permanent entering",
+      "parents": [
+       "Permanents"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "trigger.named-permanent-enters",
+      "faceIndex": 0,
+      "clause": "When Phylath enters"
+     }
+    },
+    {
+     "factId": "face-0/ability-0/fact-1-token-create-explicit",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "create",
+     "actor": "you",
+     "object": {
+      "kind": "token",
+      "name": "Plant",
+      "types": [
+       "creature",
+       "plant",
+       "token"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "tokens/create/plant",
+      "label": "Create Plant tokens",
+      "parents": [
+       "Tokens"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "token.create-explicit",
+      "faceIndex": 0,
+      "clause": "create a 0/1 green Plant creature token for each basic land you control."
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-2-trigger-object-enters",
+     "abilityId": "face-0/ability-1",
+     "role": "trigger",
+     "action": "react-to-enter",
+     "actor": "you",
+     "object": {
+      "kind": "land",
+      "name": "Land",
+      "types": [
+       "land"
+      ]
+     },
+     "scope": "any",
+     "qualifiers": {
+      "nontoken": false
+     },
+     "bucket": {
+      "id": "lands/react-to/enter-land",
+      "label": "React to lands entering",
+      "parents": [
+       "Lands"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "trigger.object-enters",
+      "faceIndex": 0,
+      "clause": "Whenever a land you control enters"
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-3-counter-add",
+     "abilityId": "face-0/ability-1",
+     "role": "effect",
+     "action": "add",
+     "actor": "you",
+     "object": {
+      "kind": "counter",
+      "name": "+1/+1",
+      "types": [
+       "counter",
+       "plus-one-plus-one"
+      ]
+     },
+     "scope": "target",
+     "qualifiers": {},
+     "bucket": {
+      "id": "counters/add/plus-one-plus-one",
+      "label": "Add +1/+1 counters",
+      "parents": [
+       "Counters"
+      ],
+      "views": [
+       "Boost"
+      ]
+     },
+     "evidence": {
+      "ruleId": "counter.add",
+      "faceIndex": 0,
+      "clause": "put four +1/+1 counters on target Plant you control."
+     }
+    }
+   ]
+  },
+  {
+   "id": "lnk-04",
+   "name": "Secluded Starforge",
+   "typeLine": "Land",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-mana-produce",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "produce",
+     "actor": "you",
+     "object": {
+      "kind": "mana",
+      "name": "Colorless",
+      "types": [
+       "colorless",
+       "mana"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {
+      "colors": [],
+      "colorless": true,
+      "anyColor": false
+     },
+     "bucket": {
+      "id": "mana/produce/colorless",
+      "label": "Produce colorless mana",
+      "parents": [
+       "Mana"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "mana.produce",
+      "faceIndex": 0,
+      "clause": " Add {C}."
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-1-cost-tap-object",
+     "abilityId": "face-0/ability-1",
+     "role": "cost",
+     "action": "tap-as-cost",
+     "actor": "you",
+     "object": {
+      "kind": "artifact",
+      "name": "Artifact",
+      "types": [
+       "artifact"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "costs/tap/artifact",
+      "label": "Tap artifacts to pay a cost",
+      "parents": [
+       "Mana",
+       "Tokens"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "cost.tap-object",
+      "faceIndex": 0,
+      "clause": "{2}, {T}, Tap X untapped artifacts you control"
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-2-boost-modify-stats",
+     "abilityId": "face-0/ability-1",
+     "role": "effect",
+     "action": "boost",
+     "actor": "you",
+     "object": {
+      "kind": "creature",
+      "name": "Creature",
+      "types": [
+       "creature"
+      ]
+     },
+     "scope": "target",
+     "qualifiers": {
+      "statChange": "+X/+0",
+      "duration": "until-end-of-turn"
+     },
+     "bucket": {
+      "id": "boost/modify-power-toughness/target",
+      "label": "Increase a target creature's power/toughness",
+      "parents": [
+       "Boost"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "boost.modify-stats",
+      "faceIndex": 0,
+      "clause": " Target creature gets +X/+0 until end of turn. Activate only as a sorcery."
+     }
+    },
+    {
+     "factId": "face-0/ability-2/fact-3-token-create-explicit",
+     "abilityId": "face-0/ability-2",
+     "role": "effect",
+     "action": "create",
+     "actor": "you",
+     "object": {
+      "kind": "token",
+      "name": "Robot",
+      "types": [
+       "artifact",
+       "robot",
+       "token"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "tokens/create/robot",
+      "label": "Create Robot tokens",
+      "parents": [
+       "Tokens"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "token.create-explicit",
+      "faceIndex": 0,
+      "clause": " Create a 2/2 colorless Robot artifact creature token."
+     }
+    }
+   ]
+  },
+  {
+   "id": "lnk-05",
+   "name": "Weapons Manufacturing",
+   "typeLine": "Enchantment",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-trigger-object-enters",
+     "abilityId": "face-0/ability-0",
+     "role": "trigger",
+     "action": "react-to-enter",
+     "actor": "you",
+     "object": {
+      "kind": "artifact",
+      "name": "Artifact",
+      "types": [
+       "artifact"
+      ]
+     },
+     "scope": "nontoken",
+     "qualifiers": {
+      "nontoken": true
+     },
+     "bucket": {
+      "id": "artifacts/react-to/enter-nontoken-artifact",
+      "label": "React to nontoken artifacts entering",
+      "parents": [
+       "Artifacts"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "trigger.object-enters",
+      "faceIndex": 0,
+      "clause": "Whenever a nontoken artifact you control enters"
+     }
+    },
+    {
+     "factId": "face-0/ability-0/fact-1-token-create-explicit",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "create",
+     "actor": "you",
+     "object": {
+      "kind": "token",
+      "name": "Artifact",
+      "types": [
+       "artifact",
+       "token"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "tokens/create/artifact",
+      "label": "Create artifact tokens",
+      "parents": [
+       "Tokens"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "token.create-explicit",
+      "faceIndex": 0,
+      "clause": "create a colorless artifact token named Munitions with \"When this token leaves the battlefield, it deals 2 damage to any target.\""
+     }
+    },
+    {
+     "factId": "face-0/ability-0/fact-2-damage-deal",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "deal-damage",
+     "actor": "unspecified",
+     "object": {
+      "kind": "target",
+      "name": "Any Target",
+      "types": [
+       "any-target",
+       "damage",
+       "target"
+      ]
+     },
+     "scope": "target",
+     "qualifiers": {
+      "amount": "2"
+     },
+     "bucket": {
+      "id": "damage/deal/any-target",
+      "label": "Deal damage to any target",
+      "parents": [
+       "Removal"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "damage.deal",
+      "faceIndex": 0,
+      "clause": "create a colorless artifact token named Munitions with \"When this token leaves the battlefield, it deals 2 damage to any target.\""
+     }
+    }
+   ]
+  },
+  {
+   "id": "lnk-06",
+   "name": "Weftstalker Ardent",
+   "typeLine": "Creature — Drix Artificer",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-trigger-object-enters",
+     "abilityId": "face-0/ability-0",
+     "role": "trigger",
+     "action": "react-to-enter",
+     "actor": "you",
+     "object": {
+      "kind": "artifact",
+      "name": "Artifact",
+      "types": [
+       "artifact"
+      ]
+     },
+     "scope": "any",
+     "qualifiers": {
+      "nontoken": false
+     },
+     "bucket": {
+      "id": "artifacts/react-to/enter-artifact",
+      "label": "React to artifacts entering",
+      "parents": [
+       "Artifacts"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "trigger.object-enters",
+      "faceIndex": 0,
+      "clause": "Whenever another creature or artifact you control enters"
+     }
+    },
+    {
+     "factId": "face-0/ability-0/fact-1-damage-deal",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "deal-damage",
+     "actor": "opponent",
+     "object": {
+      "kind": "opponent",
+      "name": "Opponent",
+      "types": [
+       "damage",
+       "opponent"
+      ]
+     },
+     "scope": "all",
+     "qualifiers": {
+      "amount": "1"
+     },
+     "bucket": {
+      "id": "damage/deal/opponent",
+      "label": "Deal damage to opponents",
+      "parents": [
+       "Life"
+      ],
+      "views": [
+       "Direct opponent life loss"
+      ]
+     },
+     "evidence": {
+      "ruleId": "damage.deal",
+      "faceIndex": 0,
+      "clause": "this creature deals 1 damage to each opponent."
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-2-keyword-warp",
+     "abilityId": "face-0/ability-1",
+     "role": "keyword",
+     "action": "have",
+     "actor": "you",
+     "object": {
+      "kind": "keyword",
+      "name": "Warp",
+      "types": [
+       "keyword",
+       "warp"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "keywords/warp",
+      "label": "Warp",
+      "parents": [
+       "Timing"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "keyword.warp",
+      "faceIndex": 0,
+      "clause": "Warp {R}"
+     }
+    }
+   ]
+  },
+  {
+   "id": "lnk-07",
+   "name": "Sol Ring",
+   "typeLine": "Artifact",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-mana-produce",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "produce",
+     "actor": "you",
+     "object": {
+      "kind": "mana",
+      "name": "Colorless",
+      "types": [
+       "colorless",
+       "mana"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {
+      "colors": [],
+      "colorless": true,
+      "anyColor": false
+     },
+     "bucket": {
+      "id": "mana/produce/colorless",
+      "label": "Produce colorless mana",
+      "parents": [
+       "Mana"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "mana.produce",
+      "faceIndex": 0,
+      "clause": " Add {C}{C}."
+     }
+    },
+    {
+     "factId": "face-0/ability-0/fact-1-mana-accelerate-extra-source",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "accelerate",
+     "actor": "you",
+     "object": {
+      "kind": "mana",
+      "name": "Extra mana",
+      "types": [
+       "acceleration",
+       "extra-mana",
+       "mana"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "mana/accelerate/extra-mana",
+      "label": "Produce extra mana",
+      "parents": [
+       "Mana"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "mana.accelerate-extra-source",
+      "faceIndex": 0,
+      "clause": " Add {C}{C}."
+     }
+    }
+   ]
+  },
+  {
+   "id": "lnk-08",
+   "name": "Hearthhull, the Worldseed",
+   "typeLine": "Legendary Artifact — Spacecraft",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-keyword-station",
+     "abilityId": "face-0/ability-0",
+     "role": "keyword",
+     "action": "have",
+     "actor": "you",
+     "object": {
+      "kind": "keyword",
+      "name": "Station",
+      "types": [
+       "keyword",
+       "station"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "keywords/station",
+      "label": "Station",
+      "parents": [
+       "Counters"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "keyword.station",
+      "faceIndex": 0,
+      "clause": "Station"
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-1-cost-sacrifice",
+     "abilityId": "face-0/ability-1",
+     "role": "cost",
+     "action": "sacrifice",
+     "actor": "you",
+     "object": {
+      "kind": "land",
+      "name": "Land",
+      "types": [
+       "land"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "sacrifice/pay/land",
+      "label": "Sacrifice land as a cost",
+      "parents": [
+       "Sacrifice"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "cost.sacrifice",
+      "faceIndex": 0,
+      "clause": "2+ | {1}, {T}, Sacrifice a land"
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-2-cards-draw-effect",
+     "abilityId": "face-0/ability-1",
+     "role": "effect",
+     "action": "draw",
+     "actor": "you",
+     "object": {
+      "kind": "card",
+      "name": "Cards",
+      "types": [
+       "card",
+       "cards",
+       "draw"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {
+      "amount": "two"
+     },
+     "bucket": {
+      "id": "cards/draw/cards",
+      "label": "Draw cards",
+      "parents": [
+       "Card access"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "cards.draw-effect",
+      "faceIndex": 0,
+      "clause": " Draw two cards."
+     }
+    },
+    {
+     "factId": "face-0/ability-1/fact-3-lands-extra-drop",
+     "abilityId": "face-0/ability-1",
+     "role": "effect",
+     "action": "extra-land-drop",
+     "actor": "you",
+     "object": {
+      "kind": "land",
+      "name": "Lands",
+      "types": [
+       "land",
+       "lands"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "lands/play/extra-drop",
+      "label": "Play extra lands",
+      "parents": [
+       "Mana",
+       "Card access"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "lands.extra-drop",
+      "faceIndex": 0,
+      "clause": "You may play an additional land this turn."
+     }
+    },
+    {
+     "factId": "face-0/ability-2/fact-4-keyword-vigilance",
+     "abilityId": "face-0/ability-2",
+     "role": "keyword",
+     "action": "have",
+     "actor": "you",
+     "object": {
+      "kind": "keyword",
+      "name": "Vigilance",
+      "types": [
+       "keyword",
+       "vigilance"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "combat/have/vigilance",
+      "label": "Vigilance",
+      "parents": [
+       "Combat"
+      ],
+      "views": [
+       "Protection"
+      ]
+     },
+     "evidence": {
+      "ruleId": "keyword.vigilance",
+      "faceIndex": 0,
+      "clause": "8+ | Flying, vigilance, haste"
+     }
+    },
+    {
+     "factId": "face-0/ability-2/fact-5-keyword-haste",
+     "abilityId": "face-0/ability-2",
+     "role": "keyword",
+     "action": "have",
+     "actor": "you",
+     "object": {
+      "kind": "keyword",
+      "name": "Haste",
+      "types": [
+       "haste",
+       "keyword"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "combat/have/haste",
+      "label": "Haste",
+      "parents": [
+       "Combat"
+      ],
+      "views": [
+       "Timing"
+      ]
+     },
+     "evidence": {
+      "ruleId": "keyword.haste",
+      "faceIndex": 0,
+      "clause": "8+ | Flying, vigilance, haste"
+     }
+    },
+    {
+     "factId": "face-0/ability-3/fact-6-trigger-sacrificed",
+     "abilityId": "face-0/ability-3",
+     "role": "trigger",
+     "action": "react-to-sacrifice",
+     "actor": "you",
+     "object": {
+      "kind": "land",
+      "name": "Land",
+      "types": [
+       "land"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "sacrifice/react-to/land",
+      "label": "React to land being sacrificed",
+      "parents": [
+       "Sacrifice"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "trigger.sacrificed",
+      "faceIndex": 0,
+      "clause": "Whenever you sacrifice a land"
+     }
+    },
+    {
+     "factId": "face-0/ability-3/fact-7-life-lose",
+     "abilityId": "face-0/ability-3",
+     "role": "effect",
+     "action": "lose-life",
+     "actor": "opponent",
+     "object": {
+      "kind": "life",
+      "name": "Life",
+      "types": [
+       "life"
+      ]
+     },
+     "scope": "all",
+     "qualifiers": {
+      "amount": "2"
+     },
+     "bucket": {
+      "id": "life/lose/opponent",
+      "label": "Make opponents lose life",
+      "parents": [
+       "Life"
+      ],
+      "views": [
+       "Direct opponent life loss"
+      ]
+     },
+     "evidence": {
+      "ruleId": "life.lose",
+      "faceIndex": 0,
+      "clause": "each opponent loses 2 life."
+     }
+    }
+   ]
+  },
+  {
+   "id": "lnk-09",
+   "name": "Bloodbriar",
+   "typeLine": "Creature — Plant Elemental",
+   "autoBucketFacts": [
+    {
+     "factId": "face-0/ability-0/fact-0-trigger-sacrificed",
+     "abilityId": "face-0/ability-0",
+     "role": "trigger",
+     "action": "react-to-sacrifice",
+     "actor": "you",
+     "object": {
+      "kind": "permanent",
+      "name": "Permanent",
+      "types": [
+       "permanent"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "sacrifice/react-to/permanent",
+      "label": "React to permanent being sacrificed",
+      "parents": [
+       "Sacrifice"
+      ],
+      "views": []
+     },
+     "evidence": {
+      "ruleId": "trigger.sacrificed",
+      "faceIndex": 0,
+      "clause": "Whenever you sacrifice another permanent"
+     }
+    },
+    {
+     "factId": "face-0/ability-0/fact-1-counter-add",
+     "abilityId": "face-0/ability-0",
+     "role": "effect",
+     "action": "add",
+     "actor": "you",
+     "object": {
+      "kind": "counter",
+      "name": "+1/+1",
+      "types": [
+       "counter",
+       "plus-one-plus-one"
+      ]
+     },
+     "scope": "unspecified",
+     "qualifiers": {},
+     "bucket": {
+      "id": "counters/add/plus-one-plus-one",
+      "label": "Add +1/+1 counters",
+      "parents": [
+       "Counters"
+      ],
+      "views": [
+       "Boost"
+      ]
+     },
+     "evidence": {
+      "ruleId": "counter.add",
+      "faceIndex": 0,
+      "clause": "put a +1/+1 counter on this creature."
+     }
+    }
+   ]
+  }
+ ]
+}

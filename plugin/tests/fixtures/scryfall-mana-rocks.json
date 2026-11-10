@@ -1,0 +1,344 @@
+{
+ "object": "list",
+ "total_cards": 55,
+ "has_more": false,
+ "data": [
+  {
+   "object": "card",
+   "id": "795df2ee-fbfc-4961-852c-e3ec50cc52da",
+   "oracle_id": "0bc7f093-bef0-4f1a-852c-4b75ebf54838",
+   "name": "Arcane Signet",
+   "mana_cost": "{2}",
+   "cmc": 2.0,
+   "type_line": "Artifact",
+   "oracle_text": "{T}: Add one mana of any color in your commander's color identity.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": null
+   },
+   "edhrec_rank": 3,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117",
+    "normal": "https://cards.scryfall.io/normal/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117",
+    "large": "https://cards.scryfall.io/large/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117",
+    "png": "https://cards.scryfall.io/png/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.png?1793021117",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117",
+    "thumb": "https://cards.scryfall.io/thumb/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.webp?1793021117",
+    "grid": "https://cards.scryfall.io/grid/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.webp?1793021117",
+    "display": "https://cards.scryfall.io/display/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.webp?1793021117",
+    "art": "https://cards.scryfall.io/art/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.webp?1793021117",
+    "crop": "https://cards.scryfall.io/crop/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.webp?1793021117",
+    "jpeg": "https://cards.scryfall.io/normal/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117"
+   },
+   "scryfall_uri": "https://scryfall.com/card/trc/485/arcane-signet?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "3ef87948-0ad9-4757-a692-2262c8e24367",
+   "oracle_id": "95560508-7ac9-4be9-8a3f-3c7d5b52807b",
+   "name": "Fellwar Stone",
+   "mana_cost": "{2}",
+   "cmc": 2.0,
+   "type_line": "Artifact",
+   "oracle_text": "{T}: Add one mana of any color that a land an opponent controls could produce.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "4.22"
+   },
+   "edhrec_rank": 17,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.jpg?1785759354",
+    "normal": "https://cards.scryfall.io/normal/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.jpg?1785759354",
+    "large": "https://cards.scryfall.io/large/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.jpg?1785759354",
+    "png": "https://cards.scryfall.io/png/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.png?1785759354",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.jpg?1785759354",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.jpg?1785759354",
+    "thumb": "https://cards.scryfall.io/thumb/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.webp?1785759354",
+    "grid": "https://cards.scryfall.io/grid/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.webp?1785759354",
+    "display": "https://cards.scryfall.io/display/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.webp?1785759354",
+    "art": "https://cards.scryfall.io/art/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.webp?1785759354",
+    "crop": "https://cards.scryfall.io/crop/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.webp?1785759354",
+    "jpeg": "https://cards.scryfall.io/normal/front/3/e/3ef87948-0ad9-4757-a692-2262c8e24367.jpg?1785759354"
+   },
+   "scryfall_uri": "https://scryfall.com/card/mbc/74/fellwar-stone?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "df44b703-e025-480d-9c7b-55873407bdf4",
+   "oracle_id": "9965d9c5-2ebf-4a6c-930e-55c5890979be",
+   "name": "Thought Vessel",
+   "mana_cost": "{2}",
+   "cmc": 2.0,
+   "type_line": "Artifact",
+   "oracle_text": "You have no maximum hand size.\n{T}: Add {C}.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "3.49"
+   },
+   "edhrec_rank": 21,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.jpg?1793111967",
+    "normal": "https://cards.scryfall.io/normal/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.jpg?1793111967",
+    "large": "https://cards.scryfall.io/large/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.jpg?1793111967",
+    "png": "https://cards.scryfall.io/png/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.png?1793111967",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.jpg?1793111967",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.jpg?1793111967",
+    "thumb": "https://cards.scryfall.io/thumb/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.webp?1793111967",
+    "grid": "https://cards.scryfall.io/grid/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.webp?1793111967",
+    "display": "https://cards.scryfall.io/display/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.webp?1793111967",
+    "art": "https://cards.scryfall.io/art/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.webp?1793111967",
+    "crop": "https://cards.scryfall.io/crop/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.webp?1793111967",
+    "jpeg": "https://cards.scryfall.io/normal/front/d/f/df44b703-e025-480d-9c7b-55873407bdf4.jpg?1793111967"
+   },
+   "scryfall_uri": "https://scryfall.com/card/trc/509/thought-vessel?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "091600ae-6578-4353-8e0f-d170f555bcd0",
+   "oracle_id": "c97361b5-af16-4a7b-af85-a429dbaf4ad2",
+   "name": "Mind Stone",
+   "mana_cost": "{2}",
+   "cmc": 2.0,
+   "type_line": "Artifact",
+   "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": null
+   },
+   "edhrec_rank": 32,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.jpg?1793111949",
+    "normal": "https://cards.scryfall.io/normal/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.jpg?1793111949",
+    "large": "https://cards.scryfall.io/large/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.jpg?1793111949",
+    "png": "https://cards.scryfall.io/png/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.png?1793111949",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.jpg?1793111949",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.jpg?1793111949",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.webp?1793111949",
+    "grid": "https://cards.scryfall.io/grid/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.webp?1793111949",
+    "display": "https://cards.scryfall.io/display/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.webp?1793111949",
+    "art": "https://cards.scryfall.io/art/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.webp?1793111949",
+    "crop": "https://cards.scryfall.io/crop/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.webp?1793111949",
+    "jpeg": "https://cards.scryfall.io/normal/front/0/9/091600ae-6578-4353-8e0f-d170f555bcd0.jpg?1793111949"
+   },
+   "scryfall_uri": "https://scryfall.com/card/trc/497/mind-stone?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "4cfcaacc-216d-4872-8a7a-27eace8039ed",
+   "oracle_id": "4c0a0448-b9d6-43a0-8549-64066dac63f0",
+   "name": "Talisman of Dominance",
+   "mana_cost": "{2}",
+   "cmc": 2.0,
+   "type_line": "Artifact",
+   "oracle_text": "{T}: Add {C}.\n{T}: Add {U} or {B}. This artifact deals 1 damage to you.",
+   "color_identity": [
+    "B",
+    "U"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": null
+   },
+   "edhrec_rank": 91,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.jpg?1793021208",
+    "normal": "https://cards.scryfall.io/normal/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.jpg?1793021208",
+    "large": "https://cards.scryfall.io/large/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.jpg?1793021208",
+    "png": "https://cards.scryfall.io/png/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.png?1793021208",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.jpg?1793021208",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.jpg?1793021208",
+    "thumb": "https://cards.scryfall.io/thumb/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.webp?1793021208",
+    "grid": "https://cards.scryfall.io/grid/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.webp?1793021208",
+    "display": "https://cards.scryfall.io/display/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.webp?1793021208",
+    "art": "https://cards.scryfall.io/art/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.webp?1793021208",
+    "crop": "https://cards.scryfall.io/crop/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.webp?1793021208",
+    "jpeg": "https://cards.scryfall.io/normal/front/4/c/4cfcaacc-216d-4872-8a7a-27eace8039ed.jpg?1793021208"
+   },
+   "scryfall_uri": "https://scryfall.com/card/trc/505/talisman-of-dominance?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "c1a31d52-a407-4ded-bfca-cc812f11afa0",
+   "oracle_id": "736892cb-a34b-4bb9-b56c-e26e3db207a2",
+   "name": "Mana Vault",
+   "mana_cost": "{1}",
+   "cmc": 1.0,
+   "type_line": "Artifact",
+   "oracle_text": "This artifact doesn't untap during your untap step.\nAt the beginning of your upkeep, you may pay {4}. If you do, untap this artifact.\nAt the beginning of your draw step, if this artifact is tapped, it deals 1 damage to you.\n{T}: Add {C}{C}{C}.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "111.47"
+   },
+   "edhrec_rank": 153,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.jpg?1783921790",
+    "normal": "https://cards.scryfall.io/normal/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.jpg?1783921790",
+    "large": "https://cards.scryfall.io/large/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.jpg?1783921790",
+    "png": "https://cards.scryfall.io/png/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.png?1783921790",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.jpg?1783921790",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.jpg?1783921790",
+    "thumb": "https://cards.scryfall.io/thumb/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.webp?1783921790",
+    "grid": "https://cards.scryfall.io/grid/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.webp?1783921790",
+    "display": "https://cards.scryfall.io/display/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.webp?1783921790",
+    "art": "https://cards.scryfall.io/art/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.webp?1783921790",
+    "crop": "https://cards.scryfall.io/crop/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.webp?1783921790",
+    "jpeg": "https://cards.scryfall.io/normal/front/c/1/c1a31d52-a407-4ded-bfca-cc812f11afa0.jpg?1783921790"
+   },
+   "scryfall_uri": "https://scryfall.com/card/2x2/308/mana-vault?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "f340cbf7-5bbe-45b9-a4bf-d1caa500ff93",
+   "oracle_id": "ec3d4466-547c-4e02-b1b5-a156ec4637e9",
+   "name": "Chrome Mox",
+   "mana_cost": "{0}",
+   "cmc": 0.0,
+   "type_line": "Artifact",
+   "oracle_text": "Imprint — When this artifact enters, you may exile a nonartifact, nonland card from your hand.\n{T}: Add one mana of any of the exiled card's colors.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "164.54"
+   },
+   "edhrec_rank": 156,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.jpg?1783930116",
+    "normal": "https://cards.scryfall.io/normal/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.jpg?1783930116",
+    "large": "https://cards.scryfall.io/large/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.jpg?1783930116",
+    "png": "https://cards.scryfall.io/png/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.png?1783930116",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.jpg?1783930116",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.jpg?1783930116",
+    "thumb": "https://cards.scryfall.io/thumb/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.webp?1783930116",
+    "grid": "https://cards.scryfall.io/grid/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.webp?1783930116",
+    "display": "https://cards.scryfall.io/display/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.webp?1783930116",
+    "art": "https://cards.scryfall.io/art/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.webp?1783930116",
+    "crop": "https://cards.scryfall.io/crop/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.webp?1783930116",
+    "jpeg": "https://cards.scryfall.io/normal/front/f/3/f340cbf7-5bbe-45b9-a4bf-d1caa500ff93.jpg?1783930116"
+   },
+   "scryfall_uri": "https://scryfall.com/card/2xm/240/chrome-mox?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "0862060d-3198-4eeb-af8c-efeb27f42a99",
+   "oracle_id": "7d881c57-0bd9-4c57-aa4a-b10808b86143",
+   "name": "Dimir Signet",
+   "mana_cost": "{2}",
+   "cmc": 2.0,
+   "type_line": "Artifact",
+   "oracle_text": "{1}, {T}: Add {U}{B}.",
+   "color_identity": [
+    "B",
+    "U"
+   ],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "0.31"
+   },
+   "edhrec_rank": 157,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.jpg?1789599833",
+    "normal": "https://cards.scryfall.io/normal/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.jpg?1789599833",
+    "large": "https://cards.scryfall.io/large/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.jpg?1789599833",
+    "png": "https://cards.scryfall.io/png/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.png?1789599833",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.jpg?1789599833",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.jpg?1789599833",
+    "thumb": "https://cards.scryfall.io/thumb/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.webp?1789599833",
+    "grid": "https://cards.scryfall.io/grid/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.webp?1789599833",
+    "display": "https://cards.scryfall.io/display/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.webp?1789599833",
+    "art": "https://cards.scryfall.io/art/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.webp?1789599833",
+    "crop": "https://cards.scryfall.io/crop/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.webp?1789599833",
+    "jpeg": "https://cards.scryfall.io/normal/front/0/8/0862060d-3198-4eeb-af8c-efeb27f42a99.jpg?1789599833"
+   },
+   "scryfall_uri": "https://scryfall.com/card/frc/56/dimir-signet?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "66024e69-ad60-4c9a-a0ca-da138d33ad80",
+   "oracle_id": "7a43bd27-fdd8-41f0-9bc4-92568f3408f1",
+   "name": "Mox Amber",
+   "mana_cost": "{0}",
+   "cmc": 0.0,
+   "type_line": "Legendary Artifact",
+   "oracle_text": "{T}: Add one mana of any color among legendary creatures and planeswalkers you control.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "84.51"
+   },
+   "edhrec_rank": 203,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.jpg?1783934955",
+    "normal": "https://cards.scryfall.io/normal/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.jpg?1783934955",
+    "large": "https://cards.scryfall.io/large/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.jpg?1783934955",
+    "png": "https://cards.scryfall.io/png/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.png?1783934955",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.jpg?1783934955",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.jpg?1783934955",
+    "thumb": "https://cards.scryfall.io/thumb/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.webp?1783934955",
+    "grid": "https://cards.scryfall.io/grid/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.webp?1783934955",
+    "display": "https://cards.scryfall.io/display/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.webp?1783934955",
+    "art": "https://cards.scryfall.io/art/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.webp?1783934955",
+    "crop": "https://cards.scryfall.io/crop/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.webp?1783934955",
+    "jpeg": "https://cards.scryfall.io/normal/front/6/6/66024e69-ad60-4c9a-a0ca-da138d33ad80.jpg?1783934955"
+   },
+   "scryfall_uri": "https://scryfall.com/card/dom/224/mox-amber?utm_source=api"
+  },
+  {
+   "object": "card",
+   "id": "56001a36-126b-4c08-af98-a6cc4d84210e",
+   "oracle_id": "de2440de-e948-4811-903c-0bbe376ff64d",
+   "name": "Mox Opal",
+   "mana_cost": "{0}",
+   "cmc": 0.0,
+   "type_line": "Legendary Artifact",
+   "oracle_text": "Metalcraft — {T}: Add one mana of any color. Activate only if you control three or more artifacts.",
+   "color_identity": [],
+   "legalities": {
+    "commander": "legal"
+   },
+   "prices": {
+    "usd": "221.60"
+   },
+   "edhrec_rank": 244,
+   "image_uris": {
+    "small": "https://cards.scryfall.io/small/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.jpg?1783930101",
+    "normal": "https://cards.scryfall.io/normal/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.jpg?1783930101",
+    "large": "https://cards.scryfall.io/large/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.jpg?1783930101",
+    "png": "https://cards.scryfall.io/png/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.png?1783930101",
+    "art_crop": "https://cards.scryfall.io/art_crop/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.jpg?1783930101",
+    "border_crop": "https://cards.scryfall.io/border_crop/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.jpg?1783930101",
+    "thumb": "https://cards.scryfall.io/thumb/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.webp?1783930101",
+    "grid": "https://cards.scryfall.io/grid/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.webp?1783930101",
+    "display": "https://cards.scryfall.io/display/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.webp?1783930101",
+    "art": "https://cards.scryfall.io/art/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.webp?1783930101",
+    "crop": "https://cards.scryfall.io/crop/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.webp?1783930101",
+    "jpeg": "https://cards.scryfall.io/normal/front/5/6/56001a36-126b-4c08-af98-a6cc4d84210e.jpg?1783930101"
+   },
+   "scryfall_uri": "https://scryfall.com/card/2xm/275/mox-opal?utm_source=api"
+  }
+ ],
+ "query": "id<=ubg f:commander game:paper -is:digital -!\"Sol Ring\" mv<=2 otag:mana-rock"
+}

@@ -1,0 +1,1242 @@
+{
+  "version": 1,
+  "operations": [
+    {
+      "name": "flush",
+      "family": "persistence",
+      "kind": "query",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [],
+      "summary": "Save pending manual changes and return the current revision.",
+      "internal": true
+    },
+    {
+      "name": "open_deck",
+      "family": "persistence",
+      "kind": "session",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "Decks menu"
+      ],
+      "summary": "Show the chat's bound deck in the studio.",
+      "internal": true,
+      "handler": "host"
+    },
+    {
+      "name": "select_cards",
+      "family": "card_display",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          },
+          "focus": {
+            "type": "boolean"
+          }
+        }
+      },
+      "manual": [
+        "right-drag lasso",
+        "stats rows",
+        "bucket card index"
+      ],
+      "summary": "Select cards by name or id and focus them on the table."
+    },
+    {
+      "name": "focus_cards",
+      "family": "card_display",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          }
+        }
+      },
+      "manual": [
+        "card index row click"
+      ],
+      "summary": "Move the camera to cards without changing the selection."
+    },
+    {
+      "name": "clear_selection",
+      "family": "table_org",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "click empty table"
+      ],
+      "summary": "Clear the selection."
+    },
+    {
+      "name": "set_view_mode",
+      "family": "layout",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "table",
+              "stats",
+              "buckets",
+              "strategy"
+            ]
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "manual": [
+        "#tab-list",
+        "#tab-stats",
+        "#tab-buckets",
+        "#tab-strategy"
+      ],
+      "summary": "Switch between the Table, Stats, Effects (buckets) and Strategy views."
+    },
+    {
+      "name": "fit_view",
+      "family": "layout",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#fit-cards",
+        "#fit-bucket-cards"
+      ],
+      "summary": "Fit every card on screen."
+    },
+    {
+      "name": "center_view",
+      "family": "layout",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#center-table"
+      ],
+      "summary": "Center the table."
+    },
+    {
+      "name": "set_deck_title",
+      "family": "deck_config",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 90
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "manual": [
+        "#name-deck"
+      ],
+      "summary": "Rename the deck."
+    },
+    {
+      "name": "set_strategy_notes",
+      "family": "notes",
+      "kind": "document",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "notes": {
+            "type": "string",
+            "maxLength": 20000
+          }
+        },
+        "required": [
+          "notes"
+        ]
+      },
+      "manual": [
+        "#strategy-notes"
+      ],
+      "summary": "Replace the player's personal strategy notes. Only on explicit request; never to store generated guides."
+    },
+    {
+      "name": "add_cards",
+      "family": "composition",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "manual": [
+        "#add-card",
+        "#confirm-add-card"
+      ],
+      "summary": "Add physical copies of a card by name, 'Name (SET) 123' printing, or Scryfall id."
+    },
+    {
+      "name": "remove_cards",
+      "family": "composition",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          }
+        }
+      },
+      "manual": [
+        "#confirm-remove-card"
+      ],
+      "summary": "Remove card copies by id or name (every copy matching a name)."
+    },
+    {
+      "name": "move_to_sideboard",
+      "family": "composition",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          }
+        }
+      },
+      "manual": [
+        "#wb-move-sideboard"
+      ],
+      "summary": "Take card copies off the table and keep them as sideboard candidates, printing included."
+    },
+    {
+      "name": "replace_card",
+      "family": "composition",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "scryfall_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f-]{36}$"
+          }
+        },
+        "required": [
+          "scryfall_id"
+        ]
+      },
+      "manual": [
+        "comparison tray Replace button"
+      ],
+      "summary": "Replace one card (by id or name) with a Scryfall card id, keeping its place. One undo restores it."
+    },
+    {
+      "name": "reset_positions",
+      "family": "table_org",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#reset-positions"
+      ],
+      "summary": "Put every card back in automatic layout."
+    },
+    {
+      "name": "undo",
+      "family": "history_settings",
+      "kind": "document",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#undo-move",
+        "#undo-buckets"
+      ],
+      "summary": "Undo the most recent change, whichever history holds it."
+    },
+    {
+      "name": "redo",
+      "family": "history_settings",
+      "kind": "document",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#redo-move",
+        "#redo-buckets"
+      ],
+      "summary": "Redo the most recently undone change."
+    },
+    {
+      "name": "load_decklist",
+      "family": "import_load",
+      "kind": "document",
+      "history": "clears",
+      "params": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 50000
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "manual": [
+        "#load-cards"
+      ],
+      "summary": "Replace the deck with a pasted decklist (one 'N Card Name' per line). Starts a load and returns immediately. Clears undo history."
+    },
+    {
+      "name": "import_mythictools_csv",
+      "family": "import_load",
+      "kind": "document",
+      "history": "clears",
+      "params": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 2000000
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "manual": [
+        "#import-mythictools-csv"
+      ],
+      "summary": "Replace the deck with a MythicTools CSV export: pass the CSV text (a scanner export). Keeps each card's printing, set, collector number and price. Starts a load and returns immediately; clears undo history. To import a .csv file by path, use mtg_deck_studio_decks action=import.",
+      "internal": false
+    },
+    {
+      "name": "set_card_properties",
+      "family": "deck_config",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          },
+          "is_commander": {
+            "type": "boolean"
+          },
+          "is_alternate_commander": {
+            "type": "boolean"
+          },
+          "table_section": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "stats_add": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 40
+          },
+          "stats_remove": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 40
+          }
+        }
+      },
+      "manual": [
+        "#commander-tag",
+        "#alternate-commander-tag",
+        "#table-section-select",
+        "#card-stats-category-checks",
+        "#save-card-edits"
+      ],
+      "summary": "Set commander / alternate-commander flags, the table section (id or label; empty for automatic) and custom stats categories of cards."
+    },
+    {
+      "name": "set_mana_value",
+      "family": "deck_config",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "manual": [
+        "#save-mana-value",
+        "#clear-mana-value"
+      ],
+      "summary": "Override the mana value used for table, stats and effects; null clears the override."
+    },
+    {
+      "name": "set_card_roles",
+      "family": "roles",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          },
+          "add": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 40
+          },
+          "remove": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 40
+          },
+          "exact": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 40
+          }
+        }
+      },
+      "manual": [
+        "#bucket-checks",
+        "#save-buckets",
+        "#clear-buckets",
+        "bucket card drag"
+      ],
+      "summary": "Add or remove effects (bucket ids or labels) on cards, or set them exactly ([] clears)."
+    },
+    {
+      "name": "create_role",
+      "family": "roles",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "group": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "label",
+          "group"
+        ]
+      },
+      "manual": [
+        "#add-bucket",
+        "#create-bucket"
+      ],
+      "summary": "Create a custom effect in a effect group (see list_roles)."
+    },
+    {
+      "name": "add_table_section",
+      "family": "table_org",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "manual": [
+        "#add-table-section"
+      ],
+      "summary": "Create a custom table section."
+    },
+    {
+      "name": "add_stats_category",
+      "family": "statistics",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "manual": [
+        "#add-stats-category"
+      ],
+      "summary": "Create a custom statistics category."
+    },
+    {
+      "name": "flip_cards",
+      "family": "card_display",
+      "kind": "document",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          }
+        }
+      },
+      "manual": [
+        "dblclick card",
+        ".face-toggle"
+      ],
+      "summary": "Show the other face of double-faced cards."
+    },
+    {
+      "name": "toggle_subtypes",
+      "family": "table_org",
+      "kind": "document",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#toggle-subtypes"
+      ],
+      "summary": "Show or hide subtype grouping on the table."
+    },
+    {
+      "name": "toggle_granular_view",
+      "family": "roles",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#toggle-bucket-subcategories"
+      ],
+      "summary": "Switch the Effects view between broad and granular sections."
+    },
+    {
+      "name": "reclassify",
+      "family": "reclassification",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {
+          "reset": {
+            "type": "boolean"
+          }
+        }
+      },
+      "manual": [
+        "#auto-buckets",
+        "#reset-buckets"
+      ],
+      "summary": "Recompute automatic effects from Oracle text; reset=true also drops manual effect overrides."
+    },
+    {
+      "name": "clear_table",
+      "family": "import_load",
+      "kind": "document",
+      "history": "clears",
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#clear-table"
+      ],
+      "summary": "Remove every card from the table. Clears undo history, so it cannot be undone. Only on explicit request."
+    },
+    {
+      "name": "stop_loading",
+      "family": "import_load",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#stop-loading"
+      ],
+      "summary": "Stop a running card load."
+    },
+    {
+      "name": "zoom",
+      "family": "layout",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "string",
+            "enum": [
+              "in",
+              "out"
+            ]
+          }
+        },
+        "required": [
+          "direction"
+        ]
+      },
+      "manual": [
+        "#zoom-in",
+        "#zoom-out",
+        "wheel"
+      ],
+      "summary": "Zoom the table in or out."
+    },
+    {
+      "name": "toggle_panel",
+      "family": "layout",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#toggle-panel"
+      ],
+      "summary": "Collapse or expand the viewer's control panel."
+    },
+    {
+      "name": "focus_stats_section",
+      "family": "statistics",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "section"
+        ]
+      },
+      "manual": [
+        "stats nav buttons"
+      ],
+      "summary": "Open Stats and scroll to a section."
+    },
+    {
+      "name": "show_role",
+      "family": "roles",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "role"
+        ]
+      },
+      "manual": [
+        "role rows",
+        "role sidebar"
+      ],
+      "summary": "Open the Effects view on one effect."
+    },
+    {
+      "name": "show_roles_overview",
+      "family": "roles",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "All categories"
+      ],
+      "summary": "Open the Effects overview."
+    },
+    {
+      "name": "list_roles",
+      "family": "roles",
+      "kind": "query",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [],
+      "summary": "List effects in use, effect groups, table sections and stats categories with ids."
+    },
+    {
+      "name": "explain_card",
+      "family": "roles",
+      "kind": "query",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 100
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 100
+          }
+        }
+      },
+      "manual": [
+        "card index Why?"
+      ],
+      "summary": "Explain why cards have their effects (rules and Oracle clauses)."
+    },
+    {
+      "name": "delete_role",
+      "family": "roles",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "role"
+        ]
+      },
+      "manual": [
+        "custom role Delete",
+        "#save-buckets"
+      ],
+      "summary": "Delete a custom effect from the library and every card."
+    },
+    {
+      "name": "set_role_group",
+      "family": "roles",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "group": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "role",
+          "group"
+        ]
+      },
+      "manual": [
+        "custom role group select"
+      ],
+      "summary": "Move a custom effect to another effect group."
+    },
+    {
+      "name": "set_subtype_sections",
+      "family": "table_org",
+      "kind": "document",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "subtypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 40,
+            "description": "Subtype names such as Insect, Robot, Scout. [] clears the sections."
+          },
+          "fit": {
+            "type": "boolean",
+            "description": "Frame the sections after applying them (default true)."
+          }
+        },
+        "required": [
+          "subtypes"
+        ]
+      },
+      "manual": [
+        "#save-subtypes",
+        "#clear-subtypes"
+      ],
+      "summary": "Give subtypes their own table sections and frame them; switches to the table view with subtype grouping on. Accepts plain names (Insect) or section ids. Returns the section ids and the deck's count for each requested subtype."
+    },
+    {
+      "name": "set_granular_sections",
+      "family": "roles",
+      "kind": "document",
+      "history": "buckets",
+      "params": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "default",
+              "clear"
+            ]
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "manual": [
+        "#default-sub-buckets",
+        "#clear-sub-buckets"
+      ],
+      "summary": "Restore the default granular sections (mechanics on 3+ cards) or clear them."
+    },
+    {
+      "name": "set_settings",
+      "family": "history_settings",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "zoom_sensitivity": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 5
+          },
+          "pan_sensitivity": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 5
+          },
+          "placement_delay": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          }
+        }
+      },
+      "manual": [
+        "#zoom-sensitivity",
+        "#pan-sensitivity",
+        "#placement-delay"
+      ],
+      "summary": "Change zoom/pan sensitivity and the placement delay."
+    },
+    {
+      "name": "move_cards",
+      "family": "table_org",
+      "kind": "document",
+      "history": "table",
+      "params": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 40
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "maxItems": 40
+          },
+          "x_mm": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "y_mm": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          }
+        },
+        "required": [
+          "x_mm",
+          "y_mm"
+        ]
+      },
+      "manual": [
+        "card drag"
+      ],
+      "summary": "Place cards at a hand position on the table (millimetres from the table origin), laid out left to right. Reset Positions restores the automatic layout."
+    },
+    {
+      "name": "toggle_specific_mechanics",
+      "family": "roles",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "More specific mechanics"
+      ],
+      "summary": "Expand or collapse the specific mechanics of the effect group on screen."
+    },
+    {
+      "name": "toggle_card_index",
+      "family": "roles",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#bucket-card-index-details"
+      ],
+      "summary": "Expand or collapse the effect card index."
+    },
+    {
+      "name": "toggle_review_list",
+      "family": "roles",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {}
+      },
+      "manual": [
+        "#bucket-review-details"
+      ],
+      "summary": "Expand or collapse the review list of unclassified clauses."
+    },
+    {
+      "name": "save_deck",
+      "family": "persistence",
+      "kind": "query",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "description": "File name; defaults to the deck title."
+          },
+          "embed_images": {
+            "type": "boolean",
+            "description": "Embed card images for offline use."
+          }
+        },
+        "required": []
+      },
+      "manual": [
+        "#save-layout"
+      ],
+      "summary": "Save the deck as JSON in the studio folder, overwriting that name. Give a name to keep a separate version."
+    },
+    {
+      "name": "search_cards",
+      "family": "card_display",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Name or type fragment to look for."
+          },
+          "select": {
+            "type": "boolean",
+            "description": "Focus the first match (default true)."
+          },
+          "occurrence": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Which place to focus when the card belongs to several effects (0 = first)."
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "manual": [
+        "#wb-search-toggle"
+      ],
+      "summary": "Find cards by name and focus the first match on the table or in Effects; a card listed under several effects reports every place and can step through them."
+    },
+    {
+      "name": "show_links",
+      "family": "card_display",
+      "kind": "view",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "card": {
+            "type": "string",
+            "description": "Card to select first (name, printed name or id)."
+          },
+          "on": {
+            "type": "boolean",
+            "description": "Turn the link layer on (default true)."
+          }
+        }
+      },
+      "manual": [
+        "#wb-links-toggle"
+      ],
+      "summary": "Show the cards linked to a card on the table: what feeds its triggers and what reacts to its effects."
+    },
+    {
+      "name": "classify_cards",
+      "family": "classification",
+      "kind": "query",
+      "history": null,
+      "params": {
+        "type": "object",
+        "properties": {
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Cards to classify: name, type_line, oracle_text, mana_cost."
+          }
+        },
+        "required": [
+          "cards"
+        ]
+      },
+      "summary": "Run the effect classifier over cards that are not in the deck (a sideboard candidate) so their links can be judged."
+    }
+  ]
+}

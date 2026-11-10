@@ -1,0 +1,22 @@
+name: mtg-deck-studio
+version: 0.2.2
+description: "MTG Deck Studio: your Commander deck on a live table beside the chat. Arrange it, sort it into effects, read its stats, and add or swap cards by conversation."
+author: Gilles Bernard
+license: MIT
+requires_hermes: ">=0.22.7"
+tags:
+  - mtg
+  - magic-the-gathering
+  - commander
+  - deckbuilding
+  - desktop-pane
+provides_tools:
+  - mtg_deck_studio_state
+  - mtg_deck_studio_apply
+  - mtg_deck_studio_decks
+  - mtg_deck_studio_strategy
+  - mtg_deck_studio_search
+  - mtg_deck_studio_sideboard
+  - mtg_deck_studio_links
+provides_hooks:
+  - pre_llm_call

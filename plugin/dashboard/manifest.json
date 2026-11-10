@@ -1,0 +1,5 @@
+{
+  "name": "mtg-deck-studio",
+  "label": "MTG Deck Studio",
+  "api": "plugin_api.py"
+}

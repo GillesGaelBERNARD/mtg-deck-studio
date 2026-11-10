@@ -1,0 +1,6 @@
+* text=auto eol=lf
+provenance/** -text
+plugin/viewer/mtg-viewer.html -text
+*.png binary
+plugin/vendor/*.py -text
+plugin/skills/mtg-deck-studio/references/** -text
