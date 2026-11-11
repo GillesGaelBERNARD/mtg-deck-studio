@@ -60,3 +60,22 @@ jobs:
       - name: Unit tests
         shell: bash
         run: python -m unittest discover -s plugin/tests -p "test_[cls]*.py" -v
+
+  # The viewer tests drive the real pane in a sandboxed frame (data: URL iframe, postMessage),
+  # so they need Playwright and a browser binary rather than the Hermes app. One OS is enough:
+  # the viewer is web tech, and the download would double the matrix cost.
+  viewer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright and Chromium
+        run: |
+          python -m pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+      - name: Viewer tests (table, card dialog, links, sideboard)
+        working-directory: plugin
+        run: python -m unittest tests.test_viewer_browser -v
