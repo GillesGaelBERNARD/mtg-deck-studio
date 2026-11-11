@@ -11,7 +11,7 @@ const frame = { el: null, ready: false, queue: [] }
 const loaded = { deckId: null, rev: 0 }
 const viewer = { version: null, dev: false, reload: null }
 const waiters = new Map()
-const $ui = atom({ ready: false, deckId: null, title: '', rev: 0, cards: 0, selected: [], last: null, menu: false, decks: [], files: [], busy: '', error: '', tray: null, camera: null, inner: null, frame: null, dev: false })
+const $ui = atom({ ready: false, deckId: null, title: '', rev: 0, cards: 0, selected: [], last: null, menu: false, decks: [], files: [], busy: '', error: '', camera: null, inner: null, frame: null, dev: false })
 
 const ui = patch => $ui.set({ ...$ui.get(), ...patch })
 const read = a => { try { return a?.get?.() ?? null } catch { return null } }
@@ -66,12 +66,6 @@ async function sendGuide(deckId, reveal) {
 function onGuide(event) {
   const p = event?.payload || {}
   if (p.deck_id && p.deck_id === loaded.deckId) sendGuide(p.deck_id, !!p.reveal)
-}
-
-function onTray(event) {
-  const p = event?.payload || {}
-  if (p.session_id !== focusedSession() || p.deck_id !== loaded.deckId) return
-  ui({ tray: { original: p.original, candidates: p.candidates || [], query: p.query } })
 }
 
 let lastSession = null
@@ -427,44 +421,6 @@ function SegButton({ label, title, onClick, disabled, path, menu }) {
   })
 }
 
-function TrayCard({ card, original, onReplace }) {
-  return jsxs('div', {
-    style: { width: 168, flex: '0 0 auto', display: 'flex', flexDirection: 'column', gap: 4, padding: 6, borderRadius: 6, border: '1px solid var(--ui-stroke-secondary, #333)', background: original ? 'rgba(143,182,255,0.08)' : 'transparent' },
-    children: [
-      card.image ? jsx('img', { src: card.image, alt: card.name, style: { width: '100%', borderRadius: 6 } }) : null,
-      jsx('div', { style: { fontWeight: 600, fontSize: 12 }, children: (original ? 'Current: ' : '') + card.name }),
-      jsx('div', { style: { fontSize: 11, opacity: 0.75 }, children: [card.mana_cost, card.type_line, card.usd ? '$' + card.usd : null].filter(Boolean).join(' · ') }),
-      original ? null : jsx('button', { type: 'button', className: BTN, onClick: onReplace, children: 'Replace' }),
-      card.scryfall_uri ? jsx('a', { href: card.scryfall_uri, target: '_blank', rel: 'noreferrer', style: { fontSize: 11, opacity: 0.7 }, children: 'Scryfall' }) : null
-    ]
-  })
-}
-
-function Tray() {
-  const st = useValue($ui)
-  const tray = st.tray
-  if (!tray) return null
-  const replace = card => {
-    if (!tray.original) { ui({ error: 'Select the card to replace first.' }); return }
-    localCommand('replace_card', { id: tray.original.id, scryfall_id: card.scryfall_id }, 'document')
-    ui({ tray: null })
-  }
-  return jsxs('div', {
-    style: { borderTop: '1px solid var(--ui-stroke-secondary, #333)', padding: 8, maxHeight: '48%', overflow: 'auto' },
-    children: [
-      jsxs('div', { style: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, fontSize: 12 }, children: [
-        jsx('strong', { children: 'Alternatives' }),
-        jsx('span', { style: { flex: 1, opacity: 0.6, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }, title: tray.query, children: tray.query }),
-        jsx('button', { type: 'button', className: BTN, onClick: () => ui({ tray: null }), children: 'Close' })
-      ] }),
-      jsxs('div', { style: { display: 'flex', gap: 8, overflowX: 'auto' }, children: [
-        tray.original ? jsx(TrayCard, { card: tray.original, original: true }) : null,
-        ...tray.candidates.map(card => jsx(TrayCard, { key: card.scryfall_id, card, onReplace: () => replace(card) }))
-      ] })
-    ]
-  })
-}
-
 function cameraReason(error) {
   const name = error?.name || ''
   if (name === 'NotAllowedError' || name === 'SecurityError') {
@@ -647,7 +603,6 @@ function StudioPane() {
       src
         ? jsx(SandboxedFrame, { key: build, src, title: 'MTG Deck Studio', sandbox: 'allow-scripts allow-forms allow-downloads', ref: el => { frame.el = el }, style: { width: '100%', flex: 1, border: 0 } })
         : jsx('div', { className: 'p-3 text-xs text-(--ui-text-tertiary)', children: 'Loading the table…' }),
-      jsx(Tray, {}),
       jsx(CameraLayer, {})
     ]
   })
@@ -687,7 +642,6 @@ export default {
     ctx.register({ id: 'open', area: PALETTE_AREA, data: { id: 'mtg-deck-studio.show', label: 'MTG Deck Studio: Show table', keywords: ['mtg', 'magic', 'deck'], run: revealStudio } })
     ctx.onEvent(`plugin.${PLUGIN_ID}.command`, onCommand)
     ctx.onEvent(`plugin.${PLUGIN_ID}.guide`, onGuide)
-    ctx.onEvent(`plugin.${PLUGIN_ID}.tray`, onTray)
     ctx.onEvent(`plugin.${PLUGIN_ID}.sideboard`, () => refreshSideboard())
     ctx.addEventListener(window, 'message', onFrameMessage)
     ctx.setInterval(syncSession, 300)

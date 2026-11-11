@@ -330,7 +330,7 @@
         ]
       },
       "manual": [
-        "comparison tray Replace button"
+        "sideboard Replace button"
       ],
       "summary": "Replace one card (by id or name) with a Scryfall card id, keeping its place. One undo restores it."
     },

@@ -72,9 +72,8 @@ park the results in the sideboard so they can be seen and acted on:
 1. `mtg_deck_studio_state` first: read the deck, its commanders, the effects already in it.
 2. `mtg_deck_studio_search` with `constraints` (`sets`, `max_mv`, `types`, `oracle`,
    `function_tags`, `exclude_names`) and a `reason`. Candidates are parked in the pane's
-   Sideboard tab by default; nothing opens over the table unless you pass `show: true`, and
-   `save: false` is for a look-only query the player does not want kept. `query` in the result
-   is the exact Scryfall query, quote it.
+   Sideboard tab; `save: false` is for a look-only query the player does not want kept. `query`
+   in the result is the exact Scryfall query, quote it.
 3. Answer with the query, why each card fits, and `::mtg-card{names="…"}` for the cards.
 
 The player adds, swaps or drops candidates from that tab. Only act for them when asked:
@@ -284,8 +283,7 @@ with `card` (or rely on the single selected card) and `constraints` translated f
 the request: `max_mv`, `types`, `oracle` phrases, `function_tags` (Scryfall oracle
 tags such as `ramp`, `mana-rock`, `removal`, `card-advantage`), `max_usd`.
 Color identity, Commander legality and paper availability are always applied.
-Results are parked in the sideboard (add `show: true` to also open the comparison tray
-over the table). Compare the candidates
+Results are parked in the sideboard. Compare the candidates
 briefly against the original and the deck's plan; candidates are not deck evidence.
 Replace only when the player chooses, with `mtg_deck_studio_apply`
 `op: "replace_card"`, the original's `id` and the candidate's `scryfall_id`.

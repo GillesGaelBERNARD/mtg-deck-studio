@@ -166,7 +166,7 @@ def trace(kind: str, record: dict, result=None) -> None:
 
 
 def notify(event: str, payload: dict) -> None:
-    """Fire-and-forget update for windows (guide published, tray results)."""
+    """Fire-and-forget update for windows (guide published, sideboard candidates)."""
     try:
         broadcast(event, payload)
     except Exception:

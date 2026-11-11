@@ -263,10 +263,6 @@ def search_tool(args, session_id, store):
         bridge.notify("sideboard", {"deck_id": deck_id})
     else:
         result["saved_to_sideboard"] = False
-    if args.get("show") and result["candidates"]:
-        bridge.notify("tray", {"session_id": session_id, "deck_id": deck_id, "original": result.get("original"),
-                               "candidates": result["candidates"], "query": result["query"]})
-        result["shown_in_tray"] = True
     result["next"] = ("Compare the candidates for the player. Replace only when asked, with mtg_deck_studio_apply "
                       "op=replace_card and the candidate's scryfall_id. Candidates are not part of the deck.")
     return result
@@ -328,8 +324,6 @@ _SEARCH = {
                     "soft": {"type": "array", "items": {"type": "string"}, "description": "Preferences you will judge yourself; reported back, not queried."},
                 },
             },
-            "show": {"type": "boolean",
-                     "description": "Also open the comparison tray over the table (default false)."},
             "save": {"type": "boolean",
                      "description": "Park the candidates in the sideboard (default true); false only lists them."},
             "reason": {"type": "string",

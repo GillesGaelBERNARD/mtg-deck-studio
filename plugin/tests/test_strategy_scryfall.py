@@ -96,7 +96,7 @@ class ScryfallTests(unittest.TestCase):
             self.assertIn(part, query)
         self.assertEqual(unexpressed, ["cheap"])
 
-    def test_results_violating_hard_constraints_never_reach_the_tray(self):
+    def test_results_violating_hard_constraints_never_reach_the_candidates(self):
         payload = json.loads((FIXTURES / "scryfall-mana-rocks.json").read_text(encoding="utf-8"))
         payload["data"].append({"name": "Off Color Rock", "oracle_id": "x", "cmc": 1, "type_line": "Artifact",
                                 "color_identity": ["R"], "legalities": {"commander": "legal"}})
