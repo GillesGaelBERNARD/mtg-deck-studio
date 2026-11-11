@@ -189,6 +189,15 @@ Real requests you can send through:
 
 The bundled skill (`plugin/skills/mtg-deck-studio/`) is the AI's manual: which tool, how to read a link panel, how to run the strategy pipeline.
 
+## Requirements
+
+Requires Hermes 0.22.7+. MIT. No Python dependencies beyond Hermes.
+
+**Tested on Windows 11 only.** The pane, the sideboard, the webcam scan and the desktop
+flows were driven by hand on Windows 11 and nothing else; the unit suite also runs on Ubuntu
+and Windows in CI, but no one has exercised the UI on macOS or Linux yet. Expect small things
+to need fixing there, and reports are welcome.
+
 ## Install
 
 ```bash
