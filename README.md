@@ -7,7 +7,6 @@ Arrange - Analyse - Research - Edit your decks with full AI assistance.
 Your decks live on a table beside the chat. The AI has context of the deck and cards you select.
 
 ![The table view, with the deck sorted into sections and the assistant beside it](assets/screenshots/table.png)
-Requires Hermes 0.22.7+. MIT. No Python dependencies beyond Hermes.
 
 ## Why
 
