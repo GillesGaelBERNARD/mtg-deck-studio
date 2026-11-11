@@ -838,8 +838,11 @@ class RealDeckTests(unittest.TestCase):
                 self.assertLessEqual(stats["linked_cards"] + stats["any_card_only"], stats["cards"])
 
     def test_invariants_hold_on_every_deck(self):
+        # Symmetry is a property of the graph, not of the panel. build() keeps the six loudest groups
+        # per card and side for display, which legitimately drops a quiet partner from one side of a
+        # pair while the other side still lists it — assert on the uncapped graph.
         for document in self.decks:
-            graph = core.links.build(document)
+            graph = core.links.build(document, max_groups=10_000, max_ids=10_000)
             with self.subTest(deck=document.get("deckTitle")):
                 for card_id, entry in graph["cards"].items():
                     self.assertNotIn(card_id, [pid for g in entry["fed_by"] for pid in g["cards"]])

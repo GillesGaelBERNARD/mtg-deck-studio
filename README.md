@@ -203,9 +203,25 @@ hermes plugins install GillesGaelBERNARD/mtg-deck-studio/plugin --enable
 
 ## What it talks to
 
-- Card data and images: the public [Scryfall API](https://scryfall.com/docs/api). No key.
-- Your decks, sideboards, scans and guides: the plugin's profile-scoped data directory.
-- Nothing else. No telemetry, no update checker, no stored credentials. See [NOTICE.md](NOTICE.md).
+Everything it touches is on this list; there is nothing else to opt out of.
+
+- **Scryfall** — `api.scryfall.com` for oracle text, printings and card search, and
+  `cards.scryfall.io` for card images. Public API, no key, no account, no purchase data. Requests
+  carry card names and filters, never your collection.
+- **The files you name** — a deck JSON, a MythicTools CSV or a decklist when you import one from the
+  Decks menu, i.e. exactly the path you pick in the file dialog. Nothing is scanned in the
+  background, and nothing outside that path is read.
+- **Its own data directory** — decks, sideboards, the strategy guide, the name-index cache, exports
+  and scan photos are written only under the plugin's profile-scoped data folder, and are never
+  uploaded anywhere.
+- **Two bundled Python helpers, run as subprocesses** with the same interpreter Hermes uses — no
+  shell, no network of their own, no elevated rights: `vendor/deck_evidence.py` (the strategy
+  evidence pack) and `vendor/mtg_viewer_to_moxfield.py` (Moxfield text export). Both MIT, listed with
+  their upstream sources in [`plugin/vendor/README.md`](plugin/vendor/README.md).
+- **The webcam** — only when you press **Scan** in the Add Cards box or the sideboard: one frame is
+  taken, saved as a JPEG under `scans/`, and read to identify the card. It is never opened otherwise.
+- **Not used at all**: telemetry, analytics, crash reporting, an update checker, stored credentials,
+  OAuth, background daemons. See [NOTICE.md](NOTICE.md).
 
 ## Develop and test
 

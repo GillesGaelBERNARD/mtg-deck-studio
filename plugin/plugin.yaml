@@ -1,5 +1,5 @@
 name: mtg-deck-studio
-version: 0.2.2
+version: 0.3.0
 description: "MTG Deck Studio: your Commander deck on a live table beside the chat. Arrange it, sort it into effects, read its stats, and add or swap cards by conversation."
 author: Gilles Bernard
 license: MIT
