@@ -256,11 +256,14 @@ def search_tool(args, session_id, store):
                               "printed_name": original.get("printedName"), "mana_cost": original.get("manaCost"),
                               "mv": original.get("manaValue"), "type_line": original.get("typeLine"),
                               "oracle_text": original.get("oracleText"), "image": original.get("imageUri")}
-    if args.get("save") and result["candidates"]:
+    if args.get("save", True) and result["candidates"]:
         saved = sideboard.add(store, deck_id, result["candidates"], reason=args.get("reason"))
         result["sideboard"] = {"added": saved["added"], "count": saved["count"]}
+        result["saved_to_sideboard"] = True
         bridge.notify("sideboard", {"deck_id": deck_id})
-    if args.get("show", True) and result["candidates"]:
+    else:
+        result["saved_to_sideboard"] = False
+    if args.get("show") and result["candidates"]:
         bridge.notify("tray", {"session_id": session_id, "deck_id": deck_id, "original": result.get("original"),
                                "candidates": result["candidates"], "query": result["query"]})
         result["shown_in_tray"] = True
@@ -302,8 +305,9 @@ _SEARCH = {
     "name": "mtg_deck_studio_search",
     "description": (
         "Find real alternatives on Scryfall for a card in the bound deck (default: the single selected card) and "
-        "show them in the studio comparison tray. Always restricted to the deck's color identity, Commander-legal "
-        "paper cards. Hard constraints are re-checked on every result. Translate the player's request into constraints."
+        "park them in the studio sideboard so the player can review, promote or replace them. Always restricted "
+        "to the deck's color identity, Commander-legal paper cards. Hard constraints are re-checked on every "
+        "result. Translate the player's request into constraints."
     ),
     "parameters": {
         "type": "object",
@@ -324,7 +328,12 @@ _SEARCH = {
                     "soft": {"type": "array", "items": {"type": "string"}, "description": "Preferences you will judge yourself; reported back, not queried."},
                 },
             },
-            "show": {"type": "boolean", "description": "Show results in the tray (default true)."},
+            "show": {"type": "boolean",
+                     "description": "Also open the comparison tray over the table (default false)."},
+            "save": {"type": "boolean",
+                     "description": "Park the candidates in the sideboard (default true); false only lists them."},
+            "reason": {"type": "string",
+                       "description": "Why these candidates were kept, shown on the sideboard row."},
         },
     },
 }

@@ -29,6 +29,12 @@ Ask it to check a synergy between two cards, remind you what a deck is actually 
   
   Read the deck, run 49 operations, search Scryfall, read the graph, write the guide, manage the sideboard and the library.
 
+- **Adaptable.**
+  
+  The more you use it, the more the AI knows how to execute your requests.
+  
+  Want a new feature ? Just ask for it in the chat.
+
 - **A table, not a list.** 
   
   Intuitive UI to organise your decks, mirroring physical manual handling of cards.
@@ -168,12 +174,15 @@ Real requests you can send through:
 - **Grounded.**
   
   The AI reads the deck before it speaks, and names the card and the reaction.
+
 - **Traceable.** 
   
   Every change comes back with a revision; a write based on a stale view is refused.
+
 - **In the rules.** 
   
   No suggestion outside the colour identity or Commander legality.
+
 - **Explicit.**
   
   No pane open means `pane_unavailable`, not a silent success.
