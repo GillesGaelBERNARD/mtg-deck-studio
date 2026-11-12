@@ -88,11 +88,12 @@ def import_bundle(params):
 
 def import_file(params):
     """Read a file the player picked inside a folder they granted to the Desktop half."""
-    from pathlib import Path
     import json
 
-    path = Path(params["path"])
-    if not path.is_absolute() or not path.is_file():
+    from .paths import safe_local_path
+
+    path = safe_local_path(params.get("path"))
+    if not path.is_file():
         raise StudioError("invalid", "Pick a file inside a granted folder.")
     suffix = path.suffix.lower()
     if suffix == ".json":
@@ -120,12 +121,11 @@ def _safe_name(value) -> str:
 def export_file(params):
     """Write the deck JSON into the studio folder (overwriting by default), optionally copying it elsewhere."""
     import shutil
-    from pathlib import Path
+
+    from .paths import safe_local_path
 
     name = _safe_name(params["name"])
-    folder = Path(params["folder"]) if params.get("folder") else _exports_dir()
-    if not folder.is_absolute():
-        raise StudioError("invalid", "Export folder must be absolute.")
+    folder = _exports_dir()
     folder.mkdir(parents=True, exist_ok=True)
     target = folder / name
     if not params.get("overwrite", True):
@@ -136,9 +136,9 @@ def export_file(params):
     target.write_text(str(params["text"]), encoding="utf-8")
     copied = None
     if params.get("copy_to"):
-        dest_dir = Path(str(params["copy_to"]))
-        if not dest_dir.is_absolute():
-            raise StudioError("invalid", "The copy folder must be absolute.")
+        # The pane names this one from its folder picker; the guard still applies, so a share
+        # or a device path cannot be used as a copy destination.
+        dest_dir = safe_local_path(params.get("copy_to"))
         dest_dir.mkdir(parents=True, exist_ok=True)
         dest = dest_dir / target.name
         shutil.copyfile(target, dest)

@@ -99,16 +99,16 @@ def decks(args, session_id, store):
         # folder), or a scanner export — a MythicTools CSV or a plain decklist — which the pane
         # resolves card by card the way its own file picker does.
         import json as json_mod
-        from pathlib import Path as PathMod
 
         from . import rpc as rpc_mod
+        from .paths import safe_local_path
 
         raw = str(args.get("path") or "").strip()
         if not raw:
             raise StudioError("invalid", "Give a path to a deck JSON, a folder of them, or a MythicTools CSV.")
-        target = PathMod(raw)
-        if not target.is_absolute():
-            raise StudioError("invalid", "The path must be absolute.")
+        # The agent names this path, so it is untrusted: safe_local_path refuses network and
+        # device paths before anything is stat()-ed.
+        target = safe_local_path(raw)
         if target.is_file() and target.suffix.lower() in (".csv", ".txt"):
             return _import_list_file(args, session_id, store, target, rpc_mod)
         if target.is_dir():

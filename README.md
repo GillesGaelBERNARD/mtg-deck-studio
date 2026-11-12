@@ -216,9 +216,10 @@ Everything it touches is on this list; there is nothing else to opt out of.
 - **Scryfall** — `api.scryfall.com` for oracle text, printings and card search, and
   `cards.scryfall.io` for card images. Public API, no key, no account, no purchase data. Requests
   carry card names and filters, never your collection.
-- **The files you name** — a deck JSON, a MythicTools CSV or a decklist when you import one from the
-  Decks menu, i.e. exactly the path you pick in the file dialog. Nothing is scanned in the
-  background, and nothing outside that path is read.
+- **The files you name — or that the agent names** — a deck JSON, a MythicTools CSV or a decklist
+  on import: either the path you pick in the file dialog or the one the assistant passes to the
+  import tool. A path is read only when named that way, nothing is scanned in the background, and
+  network shares and device paths are refused before anything is opened.
 - **Its own data directory** — decks, sideboards, the strategy guide, the name-index cache, exports
   and scan photos are written only under the plugin's profile-scoped data folder, and are never
   uploaded anywhere.

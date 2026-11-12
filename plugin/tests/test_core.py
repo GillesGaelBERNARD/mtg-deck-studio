@@ -246,6 +246,65 @@ class ImportFileTests(unittest.TestCase):
 
 
 
+class SafePathTests(unittest.TestCase):
+    """Every caller-supplied path is cleared before anything touches the filesystem.
+
+    The agent names an import path, so a share like ``//host/share/x.json`` would make the
+    machine authenticate to a chosen server; a device path reaches hardware instead of a file.
+    """
+
+    NETWORK = [
+        r"\\host\share\deck.json",
+        r"//host/share/deck.json",
+        r"\\?\C:\tmp\deck.json",
+        r"\\.\PhysicalDrive0",
+    ]
+
+    def test_network_and_device_paths_are_refused(self):
+        for raw in self.NETWORK:
+            with self.subTest(path=raw):
+                with self.assertRaises(core.errors.StudioError) as caught:
+                    core.paths.safe_local_path(raw)
+                self.assertEqual(caught.exception.outcome, "invalid")
+
+    def test_relative_and_empty_paths_are_refused(self):
+        for raw in ("", "   ", "decks/x.json", None):
+            with self.subTest(path=raw):
+                with self.assertRaises(core.errors.StudioError) as caught:
+                    core.paths.safe_local_path(raw)
+                self.assertEqual(caught.exception.outcome, "invalid")
+
+    def test_a_local_path_is_accepted_and_resolved(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "deck.json"
+            target.write_text("{}", encoding="utf-8")
+            got = core.paths.safe_local_path(str(target))
+            self.assertEqual(got, target.resolve())
+            self.assertTrue(got.is_absolute())
+
+    def test_the_import_tool_refuses_a_network_path(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = core.store.Store(Path(tmp))
+            before = store.list_decks()
+            result = json.loads(core.tools.dispatch(
+                "mtg_deck_studio_decks", {"action": "import", "path": r"//host/share/deck.json"},
+                session_id="local-a", store=store))
+            self.assertEqual(result["outcome"], "invalid")
+            self.assertEqual(len(store.list_decks()), len(before))
+
+    def test_rpc_import_and_export_refuse_network_paths(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = core.store.Store(Path(tmp))
+            default = core.store.default
+            core.store.default = lambda: store
+            try:
+                self.assertEqual(core.rpc.call("import_file", {"path": r"//host/share/deck.json"})["outcome"], "invalid")
+                saved = core.rpc.call("export_file", {"name": "deck", "text": "{}", "copy_to": r"\\host\share"})
+                self.assertEqual(saved["outcome"], "invalid")
+            finally:
+                core.store.default = default
+
+
 class MythicToolsCsvImportTests(unittest.TestCase):
     """The pane's CSV importer, reachable from the AI: by path, and as a public operation."""
 

@@ -19,7 +19,7 @@ def _plugin_id() -> str:
 
 
 PLUGIN_ID = _plugin_id()
-_MODULES = ("errors", "operations", "store", "bridge", "summary", "viewer", "strategy", "scryfall", "exports", "context", "links", "rpc", "tools")
+_MODULES = ("errors", "paths", "operations", "store", "bridge", "summary", "viewer", "strategy", "scryfall", "exports", "context", "links", "rpc", "tools")
 _loaded_mtime = 0.0
 
 
