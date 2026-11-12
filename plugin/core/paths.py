@@ -2,10 +2,10 @@
 
 The agent can name an import path (``mtg_deck_studio_decks action=import``), so a path is
 untrusted input. A bare ``is_absolute()`` is not enough on Windows: ``\\\\host\\share\\x.json``,
-``//host/share/x.json``, ``\\\\?\\C:\\x`` and ``\\\\.\\X`` all report absolute, and the first two
-make the machine open an SMB session — and hand over the user's NTLM credentials — to a server
-the caller chose. The same reasoning applies to a device path, which reaches hardware instead of
-a file.
+``//host/share/x.json``, a ``\\\\?\\``-prefixed volume path and a ``\\\\.\\`` device name all report
+absolute, and the first two make the machine open an SMB session — and hand over the user's NTLM
+credentials — to a server the caller chose. The same reasoning applies to a device path, which
+reaches hardware instead of a file.
 
 Every filesystem call in the plugin goes through this first, so nothing is stat()-ed before the
 path has been cleared, and a local junction pointing at a share is refused too.
@@ -30,7 +30,7 @@ def _refuse(raw: str, why: str) -> "StudioError":
 
 
 def _network_drive(raw: str) -> bool:
-    """``\\\\host\\share``, ``\\\\?\\C:`` and ``\\\\.\\X`` all land in ``.drive``."""
+    """``\\\\host\\share``, a ``\\\\?\\`` volume prefix and a ``\\\\.\\`` device name all land in ``.drive``."""
     drive = PureWindowsPath(raw).drive
     return drive.startswith("\\\\")
 

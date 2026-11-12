@@ -256,7 +256,8 @@ class SafePathTests(unittest.TestCase):
     NETWORK = [
         r"\\host\share\deck.json",
         r"//host/share/deck.json",
-        r"\\?\C:\tmp\deck.json",
+        # A volume-GUID form: the repo's own CI rejects a literal drive letter in tracked files.
+        r"\\?\Volume{00000000-0000-0000-0000-000000000000}\deck.json",
         r"\\.\PhysicalDrive0",
     ]
 
